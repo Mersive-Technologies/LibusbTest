@@ -22,6 +22,15 @@ Java_com_example_libusbtest_MainActivity_stringFromJNI(JNIEnv *env, jobject /* t
         __android_log_print(ANDROID_LOG_ERROR, "native", "Error: %d", r);
     }
 
+    libusb_device_handle *handle = NULL;
+    r = libusb_wrap_sys_device(NULL, (intptr_t)fd, &handle);
+    if(r < 0) {
+        __android_log_print(ANDROID_LOG_ERROR, "native", "Error wrapping meetup: %d", r);
+    } else {
+        __android_log_write(ANDROID_LOG_INFO, "native", "Have handle to meetup!");
+        libusb_close(handle);
+    }
+
     cnt = libusb_get_device_list(NULL, &devs);
     if (cnt < 0) {
         __android_log_print(ANDROID_LOG_ERROR, "native", "Error: %d", cnt);
@@ -40,10 +49,10 @@ Java_com_example_libusbtest_MainActivity_stringFromJNI(JNIEnv *env, jobject /* t
                 __android_log_write(ANDROID_LOG_INFO, "native", "Found device!");
                 if (desc.idVendor == 0x046d && desc.idProduct == 0x0866) {
                     __android_log_write(ANDROID_LOG_INFO, "native", "Found meetup!");
-                    libusb_device_handle *handle = NULL;
                     int ret = libusb_open(dev, &handle);
                     if (LIBUSB_SUCCESS == ret) {
                         __android_log_write(ANDROID_LOG_INFO, "native", "Opened meetup!");
+                        libusb_close(handle);
                     } else {
                         __android_log_print(ANDROID_LOG_ERROR, "native", "Error opening meetup: %d", ret);
                     }
