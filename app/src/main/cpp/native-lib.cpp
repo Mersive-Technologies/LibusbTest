@@ -8,7 +8,9 @@
 #include "libusb/libusb/libusb.h"
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_example_libusbtest_MainActivity_stringFromJNI(JNIEnv *env, jobject /* this */) {
+Java_com_example_libusbtest_MainActivity_stringFromJNI(JNIEnv *env, jobject /* this */, int fd) {
+
+    __android_log_print(ANDROID_LOG_INFO, "native", "Got fd from JVM: %d", fd);
     std::string hello = "Hello from C++";
 
     libusb_device **devs;

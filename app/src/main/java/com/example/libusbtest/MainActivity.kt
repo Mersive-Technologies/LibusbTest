@@ -25,13 +25,14 @@ class MainActivity : AppCompatActivity() {
                 val con = usbManager!!.openDevice(dev)
                 devices[dev.deviceId] = con
                 Log.i(tag, "Opened meetup: fd=${con.fileDescriptor}")
+                stringFromJNI(con.fileDescriptor)
             }
         }
 
-        sample_text.text = stringFromJNI()
+        sample_text.text = "blah"
     }
 
-    external fun stringFromJNI(): String
+    external fun stringFromJNI(fd: Int): String
 
     companion object {
         // Used to load the 'native-lib' library on application startup.
