@@ -28,6 +28,12 @@ Java_com_example_libusbtest_MainActivity_stringFromJNI(JNIEnv *env, jobject /* t
         __android_log_print(ANDROID_LOG_ERROR, "native", "Error wrapping meetup: %d", r);
     } else {
         __android_log_write(ANDROID_LOG_INFO, "native", "Have handle to meetup!");
+        int iface = 1;
+        int alt_setting = 0;
+        r = libusb_set_interface_alt_setting(handle, iface, alt_setting);
+        if (r < 0) {
+            __android_log_print(ANDROID_LOG_ERROR, "native", "Error %d setting interface %d to alt setting %d", r, iface, alt_setting);
+        }
         libusb_close(handle);
     }
 
