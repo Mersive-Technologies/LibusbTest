@@ -4,3 +4,6 @@
 # https://github.com/lcgamboa/USBIP-Virtual-USB-Device
 
 echo "Hello world"
+echo y | sdkmanager 'ndk-bundle'
+echo y | sdkmanager 'cmake;3.6.4111459'
+echo y | sdkmanager 'lldb;3.0'
