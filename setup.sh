@@ -35,7 +35,7 @@ export PATH=${TOOLCHAIN}/bin:${ANDROID_HOME}/cmake/${CMAKE_VERSION}/bin:${ANDROI
 echo "Downloading and installing the Android SDK"
 mkdir -p $HOME/.ssh/
 export DL_TARGET_SDK=$ANDROID_HOME/android-sdk.zip
-curl -sSf -o $DL_TARGET_SDK https://dl.google.com/android/repository/commandlinetools-linux-6609375_latest.zip
+curl -sSf -o $DL_TARGET_SDK https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
 unzip -q -d "$ANDROID_HOME" $DL_TARGET_SDK
 
 echo "Configuring the SDK"
