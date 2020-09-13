@@ -1,3 +1,8 @@
+# https://android.developreference.com/article/25508419/Connect+USB+device+to+Android+Emulator%3F
+# https://www.qemu.org/docs/master/system/usb.html
+# https://unix.stackexchange.com/questions/39370/how-to-reload-udev-rules-without-reboot/39371
+# https://github.com/lcgamboa/USBIP-Virtual-USB-Device
+
 # useful info
 set -x
 printenv
@@ -55,7 +60,16 @@ sdkmanager --list | grep system-images
 sdkmanager --install "system-images;android-29;default;x86"
 echo "no" | avdmanager --verbose create avd --force --name "generic_10" --package "system-images;android-29;default;x86" --tag "default" --abi "x86"
 
+ls -l /etc/udev
+echo ''SUBSYSTEM=="usb", ATTR{idVendor}=="2706", ATTR{idProduct}=="0000", MODE="1000", GROUP="plugdev"'' | sudo tee -a /etc/udev/rules.d/20-custom.rules
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+
 echo "Running emulator..."
+ls -l ${ANDROID_SDK}
 which emulator
-emulator @generic_10 &
+emulator @generic_10 -qemu -device usb-host,vendorid=2706,productid=0000 &
+adb root
+cat /sys/bus/usb/devices/**/idVendor
+adb shell "cat /sys/bus/usb/devices/**/idVendor"
 sleep 30
