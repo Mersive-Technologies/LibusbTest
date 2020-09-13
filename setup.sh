@@ -61,7 +61,9 @@ sdkmanager --install "system-images;android-29;default;x86"
 echo "no" | avdmanager --verbose create avd --force --name "generic_10" --package "system-images;android-29;default;x86" --tag "default" --abi "x86"
 
 ls -l /etc/udev/rules.d
-echo ''SUBSYSTEM=="usb", ATTR{idVendor}=="2706", ATTR{idProduct}=="0000", MODE="1000", GROUP="plugdev"'' | sudo tee -a /etc/udev/rules.d/20-custom.rules
+echo 'KERNEL=="kvm", GROUP="kvm", MODE="0660"' | sudo tee -a /etc/udev/rules.d/50-udev-default.rules
+echo 'SUBSYSTEM=="usb", ATTR{idVendor}=="2706", ATTR{idProduct}=="0000", MODE="1000", GROUP="plugdev"' | sudo tee -a /etc/udev/rules.d/20-custom.rules
+sudo gpasswd -a $USER kvm
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 
