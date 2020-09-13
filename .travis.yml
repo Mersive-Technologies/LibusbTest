@@ -11,5 +11,4 @@ install:
   - sudo echo "Hello root"
   - which lsusb
   - sudo ls -l /dev
-  - sudo ls -l /sys/bus
-  - sudo lsusb -vv
+  - sudo ls -l /sys/bus/usb/devices/
