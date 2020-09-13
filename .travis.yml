@@ -12,7 +12,7 @@ install:
   - uname -r
   - whoami
   - sudo apt-get update -y
-  - sudo apt install -y linux-tools-5.4.0-47-generic linux-tools-5.4.0-47 usbip
+  - sudo apt install -y linux-tools-5.4.0-47-generic linux-tools-5.4.0-47
   - find /lib/modules/ -name usbip*
   - sudo modprobe usbip-core
   - sudo modprobe usbip-host
