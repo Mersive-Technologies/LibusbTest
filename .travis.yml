@@ -10,7 +10,6 @@ install:
   - uname -r
   - whoami
   - sudo apt-get update -y
-  - sudo dpkg --get-selections | grep hold
   - sudo apt install -y linux-tools-5.4.0-47-generic linux-tools-5.4.0-47
   - sudo modprobe usbip-core
   - sudo modprobe usbip-host
