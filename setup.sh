@@ -39,7 +39,7 @@ echo "setup env"
 mkdir -p $ANDROID_HOME
 export ANDROID_NDK_HOME=${ANDROID_HOME}/ndk/${NDK_VERSION}
 export TOOLCHAIN=${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64
-export PATH=${ANDROID_ROOT}/emulator:${TOOLCHAIN}/bin:${ANDROID_HOME}/cmake/${CMAKE_VERSION}/bin:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools:$PATH
+export PATH=${ANDROID_HOME}/emulator:${TOOLCHAIN}/bin:${ANDROID_HOME}/cmake/${CMAKE_VERSION}/bin:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools:$PATH
 
 echo "Downloading and installing the Android SDK"
 mkdir -p $HOME/.ssh/
@@ -66,9 +66,9 @@ sudo udevadm control --reload-rules
 sudo udevadm trigger
 
 echo "Running emulator..."
-echo ${ANDROID_ROOT}
+echo ${ANDROID_HOME}
 echo $PATH
-ls -l ${ANDROID_ROOT}
+ls -l ${ANDROID_HOME}
 which emulator
 emulator @generic_10 -no-window -qemu -usb -device usb-host,vendorid=2706,productid=0000 &
 adb root
