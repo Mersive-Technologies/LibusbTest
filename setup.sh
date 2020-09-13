@@ -12,8 +12,12 @@ export DEBIAN_FRONTEND="noninteractive"
 export ANDROID_HOME="$HOME/Android/Sdk"
 
 # updates
+apt list --installed | grep jdk
+apt list --installed | grep jre
+java -version
 sudo apt-get -qq update -y
-sudo apt-get -qq install -y linux-tools-$(uname -r) linux-modules-extra-$(uname -r) openjdk-8-jdk unzip wget curl git python python3 cmake build-essential pkg-config libusb-1.0-0-dev
+sudo apt-get -qq install -y linux-tools-$(uname -r) linux-modules-extra-$(uname -r) openjdk-8-jdk \
+  unzip wget curl git python python3 cmake build-essential pkg-config libusb-1.0-0-dev
 
 # usbip
 find /lib/modules/ -name usbip*
