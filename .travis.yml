@@ -1,0 +1,9 @@
+language: minimal
+dist: focal
+install:
+  - echo "Hello world"
+  - printenv
+  - pwd
+  - whoami
+  - lsusb -vv
+  - ls -l /dev/bus/usb
