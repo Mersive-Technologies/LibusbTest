@@ -4,25 +4,11 @@ sudo: required
 virt: vm
 arch: amd64
 env:
-  - DEBIAN_FRONTEND=noninteractive
+  - TARGET_API: 25
+  - BUILD_TOOLS_VERSION: 30.0.1
+  - NDK_VERSION: 21.3.6528147
+  - CMAKE_VERSION: 3.10.2.4988404
+  - DEBIAN_FRONTEND: noninteractive
+  - ANDROID_HOME: /opt/android-sdk-linux
 install:
-  - echo "Hello world"
-  - printenv
-  - pwd
-  - export KERNEL=$(uname -r)
-  - export TOOLS=linux-tools-$KERNEL
-  - whoami
-  - sudo apt-get update -y
-  - apt-cache search linux-tools
-  - sudo apt install -y $TOOLS linux-modules-extra-$KERNEL
-  - find /lib/modules/ -name usbip*
-  - sudo modprobe usbip-core
-  - sudo modprobe usbip-host
-  - sudo modprobe vhci-hcd
-  - sudo echo "Hello root"
-  - git clone https://github.com/lcgamboa/USBIP-Virtual-USB-Device
-  - cd USBIP-Virtual-USB-Device/c
-  - make
-  - ./hid-mouse &
-  - sudo usbip attach -r 127.0.0.1 -b 1-1
-  - sudo ls -l /sys/bus/usb/devices/
+  - ./setup.sh
