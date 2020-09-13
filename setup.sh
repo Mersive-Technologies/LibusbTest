@@ -66,6 +66,8 @@ echo 'SUBSYSTEM=="usb", ATTR{idVendor}=="2706", ATTR{idProduct}=="0000", MODE="1
 sudo gpasswd -a $USER kvm
 sudo udevadm control --reload-rules
 sudo udevadm trigger
+su - $USER
+ls -l /dev/kvm
 
 echo "Running emulator..."
 echo ${ANDROID_HOME}
