@@ -13,6 +13,7 @@ install:
   - whoami
   - sudo apt-get update -y
   - sudo apt install -y linux-tools-5.4.0-47-generic linux-tools-5.4.0-47 usbip
+  - find /lib/modules/ -name usbip*
   - sudo modprobe usbip-core
   - sudo modprobe usbip-host
   - sudo modprobe vhci-hcd
