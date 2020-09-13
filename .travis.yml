@@ -6,5 +6,7 @@ install:
   - printenv
   - pwd
   - whoami
+  - sudo echo "Hello root"
+  - which lsusb
   - sudo lsusb -vv
   - ls -l /dev/bus/usb
