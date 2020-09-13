@@ -8,7 +8,7 @@ export BUILD_TOOLS_VERSION="30.0.1"
 export NDK_VERSION="21.3.6528147"
 export CMAKE_VERSION="3.10.2.4988404"
 export DEBIAN_FRONTEND="noninteractive"
-export ANDROID_HOME="/opt/android-sdk-linux"
+export ANDROID_HOME="$HOME/Android/Sdk"
 
 # updates
 sudo apt-get -qq update -y
@@ -27,21 +27,20 @@ sudo usbip attach -r 127.0.0.1 -b 1-1
 sudo ls -l /sys/bus/usb/devices/
 
 echo "setup env"
+mkdir -p $ANDROID_HOME
 export ANDROID_NDK_HOME=${ANDROID_HOME}/ndk/${NDK_VERSION}
 export TOOLCHAIN=${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64
 export PATH=${TOOLCHAIN}/bin:${ANDROID_HOME}/cmake/${CMAKE_VERSION}/bin:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools:$PATH
 
 echo "Downloading and installing the Android SDK"
-mkdir -p ~/.ssh/
-mkdir -p /opt/
-export DL_TARGET_SDK=/opt/android-sdk.zip
+mkdir -p $HOME/.ssh/
+export DL_TARGET_SDK=$ANDROID_HOME/android-sdk.zip
 curl -sSf -o $DL_TARGET_SDK https://dl.google.com/android/repository/commandlinetools-linux-6609375_latest.zip
-mkdir -p "$ANDROID_HOME"
 unzip -q -d "$ANDROID_HOME" $DL_TARGET_SDK
 
 echo "Configuring the SDK"
-mkdir -p /root/.android
-touch /root/.android/repositories.cfg
+mkdir -p $HOME/.android
+touch $HOME/.android/repositories.cfg
 yes | sdkmanager --licenses > /dev/null
 sdkmanager "tools" "platform-tools" "build-tools;${BUILD_TOOLS_VERSION}" "platforms;android-${TARGET_API}" > /dev/null
 sdkmanager "cmake;${CMAKE_VERSION}" > /dev/null
