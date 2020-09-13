@@ -3,12 +3,5 @@ dist: focal
 sudo: required
 virt: vm
 arch: amd64
-env:
-  - TARGET_API: 25
-  - BUILD_TOOLS_VERSION: 30.0.1
-  - NDK_VERSION: 21.3.6528147
-  - CMAKE_VERSION: 3.10.2.4988404
-  - DEBIAN_FRONTEND: noninteractive
-  - ANDROID_HOME: /opt/android-sdk-linux
 install:
   - ./setup.sh

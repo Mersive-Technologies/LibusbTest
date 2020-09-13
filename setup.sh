@@ -3,6 +3,13 @@ printenv
 pwd
 whoami
 
+export TARGET_API="25"
+export BUILD_TOOLS_VERSION="30.0.1"
+export NDK_VERSION="21.3.6528147"
+export CMAKE_VERSION="3.10.2.4988404"
+export DEBIAN_FRONTEND="noninteractive"
+export ANDROID_HOME="/opt/android-sdk-linux"
+
 # updates
 sudo apt-get -qq update -y
 sudo apt-get -qq install -y linux-tools-$(uname -r) linux-modules-extra-$(uname -r) openjdk-8-jdk unzip wget curl git python python3 cmake build-essential pkg-config libusb-1.0-0-dev
