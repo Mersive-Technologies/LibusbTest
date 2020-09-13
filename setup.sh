@@ -56,9 +56,11 @@ sdkmanager "cmake;${CMAKE_VERSION}" > /dev/null
 sdkmanager "ndk;${NDK_VERSION}" > /dev/null
 
 echo "Installing an emulator"
+# https://github.com/circleci/circleci-images/issues/140 ?
+# definitely possible: https://docs.travis-ci.com/user/languages/android/
 sdkmanager --list | grep system-images
 sdkmanager --install "system-images;android-30;google_apis_playstore;x86_64"
-echo "no" | avdmanager --verbose create avd --force --name "generic_10" --package "system-images;android-30;google_apis_playstore;x86_64" --tag "default" --abi "x86_64"
+echo "no" | avdmanager --verbose create avd --force --name "generic_10" --package "system-images;android-30;google_apis_playstore;x86_64" --tag "google_apis_playstore" --abi "x86_64"
 
 ls -l /etc/udev/rules.d
 echo 'KERNEL=="kvm", GROUP="kvm", MODE="0660"' | sudo tee -a /etc/udev/rules.d/50-udev-default.rules
