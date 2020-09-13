@@ -66,9 +66,11 @@ sudo udevadm control --reload-rules
 sudo udevadm trigger
 
 echo "Running emulator..."
+echo ${ANDROID_ROOT}
+echo $PATH
 ls -l ${ANDROID_ROOT}
 which emulator
-emulator @generic_10 -qemu -device usb-host,vendorid=2706,productid=0000 &
+emulator @generic_10 -no-window -qemu -usb -device usb-host,vendorid=2706,productid=0000 &
 adb root
 cat /sys/bus/usb/devices/**/idVendor
 adb shell "cat /sys/bus/usb/devices/**/idVendor"
