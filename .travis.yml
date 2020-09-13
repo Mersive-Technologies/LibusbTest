@@ -8,7 +8,14 @@ install:
   - printenv
   - pwd
   - whoami
+  - sudo apt install -y linux-tools-5.4.0-47-generic
+  - sudo modprobe usbip-core
+  - sudo modprobe usbip-host
+  - sudo modprobe vhci-hcd
   - sudo echo "Hello root"
-  - which lsusb
-  - sudo ls -l /dev
+  - git clone https://github.com/lcgamboa/USBIP-Virtual-USB-Device
+  - cd USBIP-Virtual-USB-Device/c
+  - make
+  - ./hid-mouse &
+  - sudo usbip attach -r 127.0.0.1 -b 1-1
   - sudo ls -l /sys/bus/usb/devices/
