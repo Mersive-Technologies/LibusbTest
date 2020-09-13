@@ -7,8 +7,9 @@ install:
   - echo "Hello world"
   - printenv
   - pwd
+  - uname -r
   - whoami
-  - sudo apt install -y linux-tools-5.4.0-47-generic
+  - sudo apt install -y linux-tools-5.4.0-47-generic linux-tools-5.4.0-47
   - sudo modprobe usbip-core
   - sudo modprobe usbip-host
   - sudo modprobe vhci-hcd
