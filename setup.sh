@@ -39,7 +39,7 @@ echo "setup env"
 mkdir -p $ANDROID_HOME
 export ANDROID_NDK_HOME=${ANDROID_HOME}/ndk/${NDK_VERSION}
 export TOOLCHAIN=${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64
-export PATH=${ANDROID_SDK}/emulator:${TOOLCHAIN}/bin:${ANDROID_HOME}/cmake/${CMAKE_VERSION}/bin:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools:$PATH
+export PATH=${ANDROID_ROOT}/emulator:${TOOLCHAIN}/bin:${ANDROID_HOME}/cmake/${CMAKE_VERSION}/bin:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools:$PATH
 
 echo "Downloading and installing the Android SDK"
 mkdir -p $HOME/.ssh/
@@ -60,13 +60,13 @@ sdkmanager --list | grep system-images
 sdkmanager --install "system-images;android-29;default;x86"
 echo "no" | avdmanager --verbose create avd --force --name "generic_10" --package "system-images;android-29;default;x86" --tag "default" --abi "x86"
 
-ls -l /etc/udev
+ls -l /etc/udev/rules.d
 echo ''SUBSYSTEM=="usb", ATTR{idVendor}=="2706", ATTR{idProduct}=="0000", MODE="1000", GROUP="plugdev"'' | sudo tee -a /etc/udev/rules.d/20-custom.rules
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 
 echo "Running emulator..."
-ls -l ${ANDROID_SDK}
+ls -l ${ANDROID_ROOT}
 which emulator
 emulator @generic_10 -qemu -device usb-host,vendorid=2706,productid=0000 &
 adb root
