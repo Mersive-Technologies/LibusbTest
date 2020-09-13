@@ -56,5 +56,6 @@ sdkmanager --install "system-images;android-29;default;x86"
 echo "no" | avdmanager --verbose create avd --force --name "generic_10" --package "system-images;android-29;default;x86" --tag "default" --abi "x86"
 
 echo "Running emulator..."
+which emulator
 emulator @generic_10 &
 sleep 30
