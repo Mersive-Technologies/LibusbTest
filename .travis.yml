@@ -8,4 +8,5 @@ install:
   - whoami
   - sudo echo "Hello root"
   - which lsusb
-  - sudo ls -l /
+  - sudo ls -l /dev
+  - sudo ls -l /sys
