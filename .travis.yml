@@ -8,5 +8,5 @@ install:
   - whoami
   - sudo echo "Hello root"
   - which lsusb
-  - sudo lsusb -vv
-  - ls -l /dev/bus/usb
+  - sudo ls -l /dev/bus/usb
+  - sudo ls -l /dev/bus/usb/**/*
