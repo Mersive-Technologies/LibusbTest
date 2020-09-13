@@ -9,11 +9,12 @@ install:
   - echo "Hello world"
   - printenv
   - pwd
-  - uname -r
+  - export KERNEL=$(uname -r)
+  - export TOOLS=linux-tools-$KERNEL
   - whoami
   - sudo apt-get update -y
   - apt-cache search linux-tools
-  - sudo apt install -y linux-tools-5.4.0-47-generic linux-tools-5.4.0-47
+  - sudo apt install -y $TOOLS
   - find /lib/modules/ -name usbip*
   - sudo modprobe usbip-core
   - sudo modprobe usbip-host
