@@ -1,4 +1,5 @@
 # useful info
+set -x
 printenv
 pwd
 whoami
