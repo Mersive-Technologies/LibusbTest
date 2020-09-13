@@ -2,6 +2,7 @@ language: minimal
 dist: focal
 sudo: required
 virt: vm
+arch: amd64
 install:
   - echo "Hello world"
   - printenv
@@ -10,5 +11,5 @@ install:
   - sudo echo "Hello root"
   - which lsusb
   - sudo ls -l /dev
-  - sudo ls -l /sys
+  - sudo ls -l /sys/bus
   - sudo lsusb -vv
